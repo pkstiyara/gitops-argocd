@@ -62,14 +62,23 @@ pipeline{
         stage('Updating kubernetes Deployment'){
             steps{
                 script{
-                    sh '''
+                    sh """
                     cat deployment.yml
                     sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployment.yml
                     cat deployment.yml
-                    '''
+                    """
                 }
             }
 
         }
+        // stage('Push the changed deployment file to Git'){
+        //     steps{
+        //         script{
+        //             sh '''
+        //         }
+        //     }
+        // }
+
+
     }
 }
